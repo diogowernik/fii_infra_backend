@@ -14,6 +14,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 import time
 import datetime
+import schedule
 
 # Setting up logger
 import logging
@@ -59,14 +60,14 @@ def daily_scrap():
     logger.warning("10:20, buscando dados diarios no site da ANBIMA.")
     for i in range(len(ativos)):
         scrap_anbima(**ativos[i])
-        
+
 # Routines
-import schedule
 schedule.every().day.at("10:20").do(daily_scrap)
 
-# Run all jobs now, regardless of their scheduling - Important when server restarts.
-schedule.run_all()
+# run daily_scrap now, when server restarts.
+daily_scrap()
 
+# check if there is pending schedule every 15 min.
 while True:
     schedule.run_pending()
-    time.sleep(90) # check if there is pending schedule every 15 min.
+    time.sleep(900)
