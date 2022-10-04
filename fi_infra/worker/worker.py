@@ -57,7 +57,7 @@ def scrap_anbima(fundo,url):
     driver.quit()
     
 def daily_scrap():
-    logger.warning("10:20, buscando dados diarios no site da ANBIMA.")
+    logger.warning("10:50, buscando dados diarios no site da ANBIMA.")
     for i in range(len(ativos)):
         scrap_anbima(**ativos[i])
 

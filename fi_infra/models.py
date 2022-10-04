@@ -11,7 +11,8 @@ class Ativo(models.Model):
 
 class CotaPatrimonial(models.Model):
     id = models.BigAutoField(primary_key=True)
-    ticker = models.ForeignKey(Ativo, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Ativo, on_delete=models.CASCADE, related_name="dados_de_mercado",
+                             related_query_name="dados_de_mercado",)
     date =  models.DateTimeField(auto_now=True)
     cota_patrimonial = models.FloatField(default=None)
     patrimonio_liquido = models.FloatField(default=None)
